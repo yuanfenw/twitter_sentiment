@@ -19,14 +19,9 @@ close(key_file)
 setup_twitter_oauth(consumer_key, consumer_secret, access_token=access_token, access_secret=access_secret)
 register_sqlite_backend("stock_sentiment")
 
-#db_name = "JMEI_tweets"
-#n = search_twitter_and_store("$JMEI", db_name)
-
-# db_name = "KORS_tweets"
-# n = search_twitter_and_store("$KORS", db_name)
-
-db_name = "CCL_tweets"
-n = search_twitter_and_store("$CCL", db_name)
+stock_symbol = "CCL"
+db_name = paste(stock_symbol,"_tweets")
+n = search_twitter_and_store(paste0("$", stock_symbol), db_name)
 
 tweets <- load_tweets_db(as.data.frame = T, table_name=db_name)
 dim(tweets)
